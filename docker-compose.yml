@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  SpaceEngineersDedicatedServer:
+    image: dechertnicholas/space-engineers-ds-linux:local
+    container_name: "SpaceEngineersDedicatedServer"
+    build: .
+    restart: unless-stopped
+    ports:
+      # YourMachine:27016 (don't change 27016)
+      - 27016:27016/udp
+      # VRage Remote API
+      #- 8080:8080/tcp
+    environment:
+      #- WINEDEBUG=+relay+seh+tid
+      # The name of your server folder
+      - INSTANCENAME=Betrayers
+    volumes:
+      # YourMachine:DockerContainer
+      # Be sure to create the folders for YourMachine, or you'll get an error
+      - ./Steam:/root/Steam
+      - ./Instances:/root/Instances
